@@ -157,3 +157,39 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+
+// Portfolio modal variables
+const projectItems = document.querySelectorAll("[data-modal-trigger]");
+const modalContainer1 = document.querySelector("[data-modal-container1]");
+const modalCloseBtn1 = document.querySelector("[data-modal-close-btn1]");
+const overlay1 = document.querySelector("[data-overlay1]");
+
+// Modal function to toggle visibility
+const portfolioModalFunc = function () {
+  modalContainer1.classList.toggle("active");
+  overlay1.classList.toggle("active");
+};
+
+// Loop through all project items and add the click event
+projectItems.forEach(item => {
+  item.addEventListener("click", function () {
+    const projectImgSrc = this.querySelector("img").src;
+    const projectTitle = this.querySelector(".project-title").innerText;
+    const projectCategory = this.querySelector(".project-category").innerText;
+
+    // Update the modal content
+    modalImg.src = projectImgSrc;
+    modalTitle.innerText = projectTitle;
+    modalText.innerHTML = `
+      <p>This is a brief description of the project in the Portfolio section.</p>
+      <p>Category: ${projectCategory}</p>
+    `;
+
+    // Show the modal
+    portfolioModalFunc();
+  });
+});
+
+// Close modal on close button or overlay click
+modalCloseBtn1.addEventListener("click", portfolioModalFunc);
+overlay1.addEventListener("click", portfolioModalFunc);
