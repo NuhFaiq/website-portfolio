@@ -1,0 +1,106 @@
+[
+    {
+        "title": "Capture The Flag (CTF) Framework",
+        "category": "Web development",
+        "images": [
+            "./assets/images/ctf_framework_1.png",
+            "./assets/images/ctf_framework_2.png",
+            "./assets/images/ctf_framework_3.png",
+            "./assets/images/ctf_framework_4.png"
+        ],
+        "description": "The CTF Framework extends CTFd to support multiple competitions, guided learning, and automated flag management.",
+        "features": [
+            "Multi-session support",
+            "Practice & competition modes",
+            "Automated/manual flag generation",
+            "Dockerized challenge hosting",
+            "Pre-built web & binary challenges"
+        ]
+    },
+    {
+        "title": "Music Player",
+        "category": "App development",
+        "images": [
+            "./assets/images/music_player_1.png",
+            "./assets/images/music_player_2.png",
+            "./assets/images/music_player_3.png",
+            "./assets/images/music_player_4.png"
+        ],
+        "description": "This app is made to play songs and have multiple functions. Software used: Native app development environment for cross-platform support.",
+        "features": [
+            "Repeat button",
+            "Shuffle button",
+            "Like/Unlike button",
+            "Favorite list",
+            "Search song feature"
+        ]
+    },
+    {
+        "title": "SADS Case Study Project (SDL)",
+        "category": "Network Configurations",
+        "images": [
+            "./assets/images/sads_case_study_1.png"
+        ],
+        "description": "This project involved setting up a network environment using CentOS, where I configured the SSH server to enable secure access to a client computer. The setup also involved DHCP for automatic IP address assignment and learning how to configure SSH for secure remote access. Software used: Oracle VM VirtualBox and CentOS 8 Linux.",
+        "features": [
+            "SSH Server Configuration",
+            "Private Key-only Login",
+            "Restricted Root Login",
+            "Disabled Password-based Access",
+            "DHCP for automatic IP assignment"
+        ]
+    },
+    {
+        "title": "Restaurant Review Website",
+        "category": "Web development",
+        "images": [
+            "./assets/images/restaurant_review_1.png"
+        ],
+        "description": "A website where users can sign up, log in, and review restaurants. Features include adding, updating, and deleting reviews, searching for restaurants, and filtering by cuisine and region. The website also integrates a Map API to show restaurant locations and allows users to update their profiles with drag-and-drop image upload functionality. Software used: HTML, CSS, JavaScript, Map API for location tracking.",
+        "features": [
+            "Sign up and Login functionality",
+            "Update profile with drag-and-drop image",
+            "Search restaurants",
+            "View restaurant details",
+            "Filter restaurants by cuisine (e.g., Western, Japanese)",
+            "Filter restaurants by region (e.g., West, East)",
+            "View, Add, Update, and Delete reviews",
+            "Review functionality restricted to logged-in users",
+            "Reviews can only be updated or deleted by the user who posted them",
+            "Map API integration"
+        ]
+    },
+    {
+        "title": "LOMA and DAVA PROJECT",
+        "category": "Data Analysis",
+        "images": [
+            "./assets/images/loma_dava_project_1.png",
+            "./assets/images/loma_dava_project_2.png",
+            "./assets/images/loma_dava_project_3.png"
+        ],
+        "description": "This project involves analyzing data using KNIME flowchart for process automation, creating interactive dashboards using Power BI, and presenting data through reports. The project enhances data analysis workflows and offers interactive visualization of key insights. Software used: KNIME for process automation and Power BI for data visualization.",
+        "features": [
+            "KNIME Flowchart for process automation",
+            "Power BI for visual data representation",
+            "Interactive Reports/Dashboards",
+            "Data-driven decision-making insights",
+            "Customizable data presentation"
+        ]
+    },
+    {
+        "title": "Company Network Setup",
+        "category": "Network Configurations",
+        "images": [
+            "./assets/images/company_network_1.png",
+            "./assets/images/company_network_2.png",
+            "./assets/images/company_network_3.png"
+        ],
+        "description": "This project involved setting up a company network where I assigned IP addresses to devices and configured them in Packet Tracer to ensure connectivity. All devices were coded to allow successful pings between them. Software used: Cisco Packet Tracer.",
+        "features": [
+            "IP address configuration",
+            "Connectivity testing via ping",
+            "Device setup in Packet Tracer",
+            "IP Addressing Table for efficient management"
+        ]
+    }
+]
