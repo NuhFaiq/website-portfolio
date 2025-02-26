@@ -856,180 +856,6 @@
         </section>
       </article>
 
-
-      <script>
-        fetch('./assets/projects.json')
-          .then(response => response.json())
-          .then(projects => {
-            const projectList = document.getElementById('projectList');
-            const modalContainer1 = document.querySelector("[data-modal-container1]");
-            const modalCloseBtn1 = document.querySelector("[data-modal-close-btn1]");
-            const overlay1 = document.querySelector("[data-overlay1]");
-            const modalTitle = document.querySelector("[data-modal-title1]");
-            const modalPreviews = document.querySelector("[data-modal-previews]");
-            const modalDescription = document.querySelector("[data-modal-description]");
-            const modalFeatures = document.querySelector("[data-modal-features]");
-
-            // Global variable to store the current project for fullscreen
-            let currentProject;
-
-            // Function to display the projects based on the selected category
-            const displayProjects = (category) => {
-              projectList.innerHTML = ''; // Clear current project list
-              const filteredProjects = category === 'All' ? projects : projects.filter(project => project.category === category);
-
-              filteredProjects.forEach(project => {
-                const projectItem = document.createElement('li');
-                projectItem.classList.add('project-item', 'active');
-                projectItem.setAttribute('data-category', project.category);
-                projectItem.setAttribute('data-project-id', project.title);
-
-                // Create the project link
-                const projectLink = document.createElement('a');
-                projectLink.href = '#';
-                projectLink.setAttribute('data-modal-trigger', 'modal');
-
-                // Create the project image
-                const projectImg = document.createElement('figure');
-                projectImg.classList.add('project-img');
-                const projectIconBox = document.createElement('div');
-                projectIconBox.classList.add('project-item-icon-box');
-                const projectIcon = document.createElement('ion-icon');
-                projectIcon.setAttribute('name', 'eye-outline');
-                projectIconBox.appendChild(projectIcon);
-                const projectImage = document.createElement('img');
-                projectImage.src = project.images && project.images[0]; // Assuming first image is the thumbnail
-                projectImage.alt = project.title;
-                projectImage.loading = 'lazy';
-                projectImg.appendChild(projectIconBox);
-                projectImg.appendChild(projectImage);
-
-                // Create project title and category
-                const projectTitle = document.createElement('h3');
-                projectTitle.classList.add('project-title');
-                projectTitle.textContent = project.title;
-                const projectCategory = document.createElement('p');
-                projectCategory.classList.add('project-category');
-                projectCategory.textContent = project.category;
-
-                // Append elements to the project link
-                projectLink.appendChild(projectImg);
-                projectLink.appendChild(projectTitle);
-                projectLink.appendChild(projectCategory);
-
-                // Append project link to the project item
-                projectItem.appendChild(projectLink);
-
-                // Append the project item to the project list
-                projectList.appendChild(projectItem);
-
-                // Add event listener for modal
-                projectItem.addEventListener('click', function () {
-                  const selectedProject = projects.find(p => p.title === project.title);
-                  currentProject = selectedProject;  // Store the selected project
-
-                  if (selectedProject) {
-                    // Set the modal content based on the project
-                    modalTitle.innerHTML = selectedProject.title;
-                    modalDescription.innerHTML = `<p>${selectedProject.description}</p>`;
-
-                    modalFeatures.innerHTML = `<p>${selectedProject.features.map(feature => `- ${feature}`).join('<br />')}</p>`;
-
-                    modalPreviews.innerHTML = '';
-                    const imagesToShow = selectedProject.images.slice(0, 2);
-                    imagesToShow.forEach((imageSrc, index) => {
-                      const previewImg = document.createElement('img');
-                      previewImg.src = imageSrc;
-                      previewImg.alt = `Screenshot ${index + 1}`;
-                      previewImg.classList.add('preview-img');
-                      previewImg.onclick = () => openFullscreen(index);
-                      modalPreviews.appendChild(previewImg);
-                    });
-
-                    if (selectedProject.images.length > 2) {
-                      const moreButton = document.createElement('button');
-                      moreButton.textContent = `+${selectedProject.images.length - 2} More`;
-                      moreButton.classList.add('more-button');
-                      moreButton.onclick = () => openFullscreen(2);
-                      modalPreviews.appendChild(moreButton);
-                    }
-
-                    portfolioModalFunc();
-                  }
-                });
-              });
-            };
-
-            // Call displayProjects for the initial load (All projects)
-            displayProjects('All');
-
-            // Filter button functionality
-            document.querySelectorAll('[data-filter-btn]').forEach(button => {
-              button.addEventListener('click', (e) => {
-                const category = e.target.textContent.trim();
-                displayProjects(category);
-
-                // Set the active class on the clicked filter button
-                document.querySelectorAll('[data-filter-btn]').forEach(btn => btn.classList.remove('active'));
-                e.target.classList.add('active');
-              });
-            });
-
-            // Select dropdown functionality
-            document.querySelectorAll('[data-select-item]').forEach(button => {
-              button.addEventListener('click', (e) => {
-                const category = e.target.textContent.trim();
-                displayProjects(category);
-
-                // Update the select button text
-                document.querySelector('[data-selecct-value]').textContent = category;
-              });
-            });
-
-            // Modal functionality
-            const portfolioModalFunc = () => {
-              modalContainer1.classList.toggle("active");
-              overlay1.classList.toggle("active");
-            };
-
-            modalCloseBtn1.addEventListener("click", portfolioModalFunc);
-            overlay1.addEventListener("click", portfolioModalFunc);
-
-            // Fullscreen viewer
-            function openFullscreen(index) {
-              const images = currentProject.images;
-              const fullscreenImage = document.getElementById('fullscreenImage');
-              fullscreenImage.src = images[index];
-              document.getElementById('fullscreenViewer').classList.remove('hidden');
-              document.body.style.overflow = 'hidden';
-              window.currentFullscreenIndex = index;
-            }
-
-            function closeFullscreen() {
-              document.getElementById('fullscreenViewer').classList.add('hidden');
-              document.body.style.overflow = '';
-            }
-
-            function moveFullscreenSlide(direction) {
-              const images = currentProject.images;
-              window.currentFullscreenIndex += direction;
-
-              if (window.currentFullscreenIndex < 0) {
-                window.currentFullscreenIndex = images.length - 1;
-              } else if (window.currentFullscreenIndex >= images.length) {
-                window.currentFullscreenIndex = 0;
-              }
-
-              document.getElementById('fullscreenImage').src = images[window.currentFullscreenIndex];
-            }
-
-            document.querySelector('.fullscreen-close').addEventListener('click', closeFullscreen);
-            document.querySelector('.prev-fullscreen').addEventListener('click', () => moveFullscreenSlide(-1));
-            document.querySelector('.next-fullscreen').addEventListener('click', () => moveFullscreenSlide(1));
-          })
-          .catch(error => console.error('Error loading projects:', error));
-      </script>
-
       <!-- Modal Container -->
       <div class="modal-container" id="modal" data-modal-container1>
         <div class="overlay" data-overlay1></div>
@@ -1074,142 +900,11 @@
         <button class="fullscreen-btn next-fullscreen" onclick="moveFullscreenSlide(1)">&#10095;</button>
       </div>
 
-      <style>
-        /* Same fixed dimensions for project images in the project list */
-        .project-item .project-img img {
-          width: 100%;
-          /* Set fixed width */
-          height: 150px;
-          /* Set fixed height */
-          object-fit: cover;
-          /* Ensure images cover the fixed area */
-          border-radius: 20px;
-        }
-
-        .preview-container {
-          display: flex;
-          gap: 10px;
-          align-items: center;
-        }
-
-        .preview-img {
-          width: 250px;
-          height: 150px;
-          cursor: pointer;
-          border-radius: 5px;
-        }
-
-        .fullscreen-container {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 100vh;
-          background-color: rgba(0, 0, 0, 0.9);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
-          z-index: 10000;
-        }
-
-        .fullscreen-container.hidden {
-          display: none;
-        }
-
-        .fullscreen-image {
-          max-width: 90%;
-          max-height: 80vh;
-          object-fit: contain;
-        }
-
-        .fullscreen-close {
-          position: absolute;
-          top: 20px;
-          right: 20px;
-          font-size: 30px;
-          background: none;
-          color: white;
-          border: none;
-          cursor: pointer;
-        }
-
-        .fullscreen-btn {
-          position: absolute;
-          top: 50%;
-          font-size: 30px;
-          background: rgba(0, 0, 0, 0.5);
-          color: white;
-          border: none;
-          cursor: pointer;
-          padding: 10px;
-          border-radius: 5px;
-          transform: translateY(-50%);
-        }
-
-        .prev-fullscreen {
-          left: 20px;
-        }
-
-        .next-fullscreen {
-          right: 20px;
-        }
-
-        .more-button {
-          background: #444;
-          color: white;
-          border: none;
-          padding: 5px 10px;
-          cursor: pointer;
-          border-radius: 5px;
-        }
-
-        @media (max-width: 768px) {
-          .modal-content {
-            max-width: 90%;
-            padding: 15px;
-          }
-
-          .preview-container {
-            flex-direction: column;
-            align-items: center;
-          }
-
-          .preview-img {
-            width: 80%;
-            height: auto;
-            max-width: 200px;
-          }
-
-          .fullscreen-image {
-            max-width: 100%;
-            max-height: 60vh;
-          }
-
-          .fullscreen-btn {
-            font-size: 24px;
-            padding: 8px;
-          }
-
-          .modal-title {
-            font-size: 18px;
-          }
-
-          .description-text {
-            font-size: 14px;
-          }
-        }
-      </style>
-
-
-
-
-
       <!--
         - #BLOG
       -->
 
-      <article class="blog" data-page="blog">
+      <!-- <article class="blog" data-page="blog">
 
         <header>
           <h2 class="h2 article-title">Blog</h2>
@@ -1391,7 +1086,7 @@
 
         </section>
 
-      </article>
+      </article> -->
 
 
 
@@ -1401,7 +1096,7 @@
         - #CONTACT
       -->
 
-      <article class="contact" data-page="contact">
+      <!-- <article class="contact" data-page="contact">
 
         <header>
           <h2 class="h2 article-title">Contact</h2>
@@ -1442,11 +1137,7 @@
 
     </div>
 
-  </main>
-
-
-
-
+  </main> -->
 
 
   <!--
