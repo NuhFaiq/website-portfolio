@@ -39,7 +39,10 @@
         "title": "SADS Case Study Project (SDL)",
         "category": "Network Configurations",
         "images": [
-            "./assets/images/sads_case_study_1.png"
+            "./assets/images/sads_case_study_1.png",
+            "./assets/images/sads_case_study_2.png",
+            "./assets/images/sads_case_study_3.png",
+            "./assets/images/sads_case_study_4.png"
         ],
         "description": "This project involved setting up a network environment using CentOS, where I configured the SSH server to enable secure access to a client computer. The setup also involved DHCP for automatic IP address assignment and learning how to configure SSH for secure remote access. Software used: Oracle VM VirtualBox and CentOS 8 Linux.",
         "features": [
@@ -59,17 +62,12 @@
             "./assets/images/restaurant_review_3.png",
             "./assets/images/restaurant_review_4.png"
         ],
-        "description": "A website where users can sign up, log in, and review restaurants. Features include adding, updating, and deleting reviews, searching for restaurants, and filtering by cuisine and region. The website also integrates a Map API to show restaurant locations and allows users to update their profiles with drag-and-drop image upload functionality. Software used: HTML, CSS, JavaScript, Map API for location tracking.",
+        "description": "A restaurant review platform with user authentication, review management, search, filters, and a Map API for locations. Users can only modify their own reviews. Software used: HTML, CSS, JavaScript, Map API.",
         "features": [
-            "Sign up and Login functionality",
-            "Update profile with drag-and-drop image",
-            "Search restaurants",
-            "View restaurant details",
-            "Filter restaurants by cuisine (e.g., Western, Japanese)",
-            "Filter restaurants by region (e.g., West, East)",
-            "View, Add, Update, and Delete reviews",
-            "Review functionality restricted to logged-in users",
-            "Reviews can only be updated or deleted by the user who posted them",
+            "User authentication",
+            "Profile updates with drag-and-drop image upload",
+            "Restaurant search & filters (cuisine, region)",
+            "View, add, update, delete reviews (user-restricted)",
             "Map API integration"
         ]
     },
