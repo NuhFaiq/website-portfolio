@@ -54,7 +54,10 @@
         "title": "Restaurant Review Website",
         "category": "Web development",
         "images": [
-            "./assets/images/restaurant_review_1.png"
+            "./assets/images/restaurant_review_1.png",
+            "./assets/images/restaurant_review_2.png",
+            "./assets/images/restaurant_review_3.png",
+            "./assets/images/restaurant_review_4.png"
         ],
         "description": "A website where users can sign up, log in, and review restaurants. Features include adding, updating, and deleting reviews, searching for restaurants, and filtering by cuisine and region. The website also integrates a Map API to show restaurant locations and allows users to update their profiles with drag-and-drop image upload functionality. Software used: HTML, CSS, JavaScript, Map API for location tracking.",
         "features": [
